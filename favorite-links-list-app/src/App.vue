@@ -1,17 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header/>
+    <Links v-bind:links="links"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './components/layout/Header'
+import Links from './components/Links'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    Header,
+    Links
+  },
+  data(){
+    return{
+      links: [
+        {
+          id: 1,
+          url: "https://www.youtube.com/watch?v=YrLk4vdY28Q"
+        },
+        {
+           id: 2,
+           url:"https://www.youtube.com/watch?v=vLHcHWDvgfQ"
+        }
+      ]
+    }
   }
 }
 </script>
