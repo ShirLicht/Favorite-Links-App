@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-bind:key="link.id" v-for="link in links">
-            <LinkItem v-bind:link="link"/>
+            <LinkItem v-bind:link="link" v-on:del-link="$emit('del-link', link.id)"/>
         </div>
     </div>
 </template>

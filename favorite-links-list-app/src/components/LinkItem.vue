@@ -5,6 +5,7 @@
         <h2 id="linkTitle"></h2>
         <p id="linkDescription"></p>
         <button @click="getData">More Information</button>
+        <button @click="$emit('del-link', link.id)" class="del">x</button>
     </div>
 </template>
 
@@ -35,6 +36,15 @@ export default {
         background: #f4f4f4;
         padding: 10px;
         border-bottom: 1px #ccc dotted;
+    }
+ .del{
+        background: #ff0000;
+        color: #fff;
+        border: none;
+        padding: 5px 9px;
+        border-radius: 50%;
+        cursor: pointer;
+        float: right;
     }
 </style>
 
