@@ -1,0 +1,41 @@
+<template>
+    <div class="link-item" >
+        {{link.url}}
+        <img id="linkImg" >
+        <h2 id="linkTitle"></h2>
+        <p id="linkDescription"></p>
+        <button @click="getData">More Information</button>
+    </div>
+</template>
+
+<script>
+
+export default {
+    name: "LinkItem",
+    props: ["link"],
+    methods : {
+           getData(){
+                console.log("create");
+                const urlMetadata = require('url-metadata');
+            
+                urlMetadata('https://cors-anywhere.herokuapp.com/'+this.link.url).then(
+                function (metadata) { // success handler
+                    console.log(metadata);
+                   document.getElementById("linkImg").src = metadata.image;
+                    document.getElementById("linkTitle").innerHTML = metadata.title;
+                    document.getElementById("linkDescription").innerHTML = metadata.description;
+                }).catch(err => console.log(err))
+                            }
+                    }
+}
+</script>
+
+<style scoped>
+ .link-item{
+        background: #f4f4f4;
+        padding: 10px;
+        border-bottom: 1px #ccc dotted;
+    }
+</style>
+
+
