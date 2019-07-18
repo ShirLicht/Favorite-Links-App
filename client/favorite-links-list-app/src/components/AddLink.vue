@@ -10,6 +10,7 @@
 
 <script>
 import uuid from 'uuid';
+import LinkService from './LinkService';
 export default {
     name:"AddLink",
      data(){
@@ -20,13 +21,9 @@ export default {
     methods:{
         addLink(e){
             e.preventDefault();
-            const newLink = {
-                id: uuid.v4(),
-                url:this.url
-            }
-
-            //Send up to parent
-            this.$emit('add-link', newLink);
+     
+            //Send the new url up to parent
+            this.$emit('add-link', this.url);
 
             this.url = '';
         }

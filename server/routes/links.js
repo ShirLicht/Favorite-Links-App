@@ -29,7 +29,7 @@ router.post('/', async(req,res) => {
 });
 
 //Delete Link
-router.delete('/', async(req,res) => {
+router.delete('/:id', async(req,res) => {
     const links = await loadLinksCollection();
 
     //delete a link from the links collection based on the id that is recieved in req.params

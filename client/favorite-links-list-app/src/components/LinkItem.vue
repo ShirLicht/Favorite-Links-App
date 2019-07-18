@@ -1,9 +1,9 @@
 <template>
     <div class="link-item" >
         {{link.url}}
-        <img id="linkImg" >
-        <h2 id="linkTitle"></h2>
-        <p id="linkDescription"></p>
+        <img id="linkImg" v-bind:src="link.image">
+        <h2 id="linkTitle">{{link.title}}</h2>
+        <p id="linkDescription">{{link.desc}}</p>
         <button @click="getData">More Information</button>
         <button @click="$emit('del-link', link.id)" class="del">x</button>
     </div>
