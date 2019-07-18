@@ -52,12 +52,12 @@ async function getUrlMetadata(url){
     //metaArr - includes only the image, title and description out of the metadata of the given url
     metaArr = await urlMetadata(url).then(
       function (metadata) { // success handler
-
-        metaArr.push(metadata.image);
-        metaArr.push(metadata.title);
-        metaArr.push(metadata.description);
-        console.log("metaArr1: " +metaArr);
-        return metaArr;
+        var customMetaData = [];
+        customMetaData.push(metadata.image);
+        customMetaData.push(metadata.title);
+        customMetaData.push(metadata.description);
+        
+        return customMetaData;
 
         
       },
@@ -65,8 +65,6 @@ async function getUrlMetadata(url){
         console.log(error);
       })
 
-
-      console.log("metaArr2: " +metaArr);
       return metaArr;
 } 
 

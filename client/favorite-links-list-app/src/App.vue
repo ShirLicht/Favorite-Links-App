@@ -27,8 +27,12 @@ export default {
   },
   methods:{
 
-      deleteLink(id){
-        this.links = this.links.filter(link => link.id !== id);
+      async deleteLink(id){
+        //this.links = this.links.filter(link => link.id !== id);
+        //Delete the link with the given id from the server
+        await LinkService.deleteLink(id);
+        //Get the updated links list from the server
+        this.links = await LinkService.getLinks();
       },
       async addLink(newLink){
         //Add the new link to the database

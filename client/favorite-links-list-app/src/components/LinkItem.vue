@@ -6,10 +6,10 @@
          <div class="content-div">
         <h2 id="linkTitle">{{link.title}}</h2>
         <p id="linkDescription">{{link.desc}}</p>
-        <p id="url-p"> {{link.url}}</p>
+        <a v-bind:href="link.url" id="url-p"> {{link.url}}</a>
         </div>
         <div>
-        <button @click="$emit('del-link', link.id)" class="del">x</button>
+        <button @click="$emit('del-link', link._id)" class="del">x</button>
         </div>
     </div>
 </template>
