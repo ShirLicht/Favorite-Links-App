@@ -6,8 +6,9 @@ const router = express.Router();
 
 //Get Links
 router.get('/', async(req,res) => {
+    console.log("GET");
     const links = await loadLinksCollection();
-
+    
     //send an array of links that are in the database
     res.send(await links.find({}).toArray());
 });
@@ -15,10 +16,13 @@ router.get('/', async(req,res) => {
 //Add Link
 router.post('/', async(req,res) => {
     const links = await loadLinksCollection();
-    const metaArr = getUrlMetadata(req.body.url);
+    console.log("Add Link: " + req.body.urlToAdd);
+    const metaArr = await getUrlMetadata(req.body.urlToAdd);
+    console.log("returned: " + metaArr);
+    
 
     await links.insertOne({
-        url: req.body.url,
+        url: req.body.urlToAdd,
         image: metaArr[0],
         title: metaArr[1],
         desc: metaArr[2]
@@ -40,21 +44,33 @@ router.delete('/:id', async(req,res) => {
 
 });
 
-function getUrlMetadata(url){
-    const metaArr = [];
-    urlMetadata(url).then(
+async function getUrlMetadata(url){
+    var metaArr = [];
+    
+    //the urlMetadata method returns all the metadata of the given url
+    //metadata - includes all the metadata of the given url
+    //metaArr - includes only the image, title and description out of the metadata of the given url
+    metaArr = await urlMetadata(url).then(
       function (metadata) { // success handler
-        console.log(metadata);
-        metaArr.push(metadata["og:image"]);
-        metaArr.push(metadata["og:title"]);
-        metaArr.push(metadata["og:description"]);
+
+        metaArr.push(metadata.image);
+        metaArr.push(metadata.title);
+        metaArr.push(metadata.description);
+        console.log("metaArr1: " +metaArr);
+        return metaArr;
+
+        
       },
       function (error) { // failure handler
-        console.log(error)
+        console.log(error);
       })
 
+
+      console.log("metaArr2: " +metaArr);
       return metaArr;
 } 
+
+
 //Handle Database
 
 async function loadLinksCollection(){

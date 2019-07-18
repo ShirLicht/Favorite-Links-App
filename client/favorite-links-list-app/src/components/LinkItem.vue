@@ -1,11 +1,16 @@
 <template>
     <div class="link-item" >
-        {{link.url}}
-        <img id="linkImg" v-bind:src="link.image">
+        <div class="img-div">
+        <img id="linkImg" v-bind:src="link.image" width="100" height="100">
+        </div>
+         <div class="content-div">
         <h2 id="linkTitle">{{link.title}}</h2>
         <p id="linkDescription">{{link.desc}}</p>
-        <button @click="getData">More Information</button>
+        <p id="url-p"> {{link.url}}</p>
+        </div>
+        <div>
         <button @click="$emit('del-link', link.id)" class="del">x</button>
+        </div>
     </div>
 </template>
 
@@ -36,6 +41,7 @@ export default {
         background: #f4f4f4;
         padding: 10px;
         border-bottom: 1px #ccc dotted;
+        display: flex;
     }
  .del{
         background: #ff0000;
@@ -46,6 +52,13 @@ export default {
         cursor: pointer;
         float: right;
     }
+    #url-p{
+        font-weight: bold;
+    }
+    .img-div{
+        padding: 10;
+    }
+   
 </style>
 
 

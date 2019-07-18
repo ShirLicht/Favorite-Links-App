@@ -9,8 +9,7 @@
 </template>
 
 <script>
-import uuid from 'uuid';
-import LinkService from './LinkService';
+
 export default {
     name:"AddLink",
      data(){
