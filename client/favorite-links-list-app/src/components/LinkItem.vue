@@ -58,6 +58,10 @@ export default {
     .img-div{
         padding: 10;
     }
+
+    .content-div{
+        padding-left:15px;
+    }
    
 </style>
 

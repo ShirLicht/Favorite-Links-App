@@ -1,5 +1,7 @@
 <template>
+
     <header class="header">
+      <link href="https://fonts.googleapis.com/css?family=Luckiest+Guy&display=swap" rel="stylesheet">
       <h1>Favorite Links List</h1>
     </header>
 </template>
@@ -15,6 +17,7 @@ export default {
      background: #333;
      color: #fff;
      text-align: center;
+     font-family: Luckiest Guy, Helvetica, sans-serif;
      padding: 10px;
  }
 

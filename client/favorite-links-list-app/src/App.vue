@@ -1,5 +1,7 @@
 <template>
+
   <div id="app">
+    <link href="https://fonts.googleapis.com/css?family=Caveat&display=swap" rel="stylesheet">
     <Header/>
     <AddLink v-on:add-link="addLink"/>
     <Links v-bind:links="links" v-on:del-link="deleteLink"/>
@@ -28,26 +30,27 @@ export default {
   methods:{
 
       async deleteLink(id){
-        //this.links = this.links.filter(link => link.id !== id);
+        
         //Delete the link with the given id from the server
         await LinkService.deleteLink(id);
         //Get the updated links list from the server
         this.links = await LinkService.getLinks();
       },
       async addLink(newLink){
+        
         //Add the new link to the database
         await LinkService.addLink(newLink);
         //Get the updated links list from the server
         this.links = await LinkService.getLinks();
 
-       // this.links = [...this.links,newLink];
+       
       }
   },
   async created(){
     try{
-      //Get the list array from the backend
+      //Get the links array from the server
       this.links = await LinkService.getLinks();
-      console.log(this.links);
+      
     }catch(err){
       console.log(err.message);
     }
@@ -64,7 +67,7 @@ export default {
   }
 
   body{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Caveat, Helvetica, sans-serif;
     line-height: 1.4;
   }
 

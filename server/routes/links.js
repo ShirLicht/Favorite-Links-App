@@ -2,25 +2,31 @@ const express = require('express');
 const mongodb = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 const urlMetadata = require('url-metadata');
+
 const router = express.Router();
 
 //Get Links
 router.get('/', async(req,res) => {
-    console.log("GET");
+    
+    //connect to the database and get the links collection
     const links = await loadLinksCollection();
     
     //send an array of links that are in the database
+    //get all the documents in the links collection and make an array out of them
     res.send(await links.find({}).toArray());
 });
 
 //Add Link
 router.post('/', async(req,res) => {
-    const links = await loadLinksCollection();
-    console.log("Add Link: " + req.body.urlToAdd);
-    const metaArr = await getUrlMetadata(req.body.urlToAdd);
-    console.log("returned: " + metaArr);
-    
 
+    //connect to the database and get the links collection
+    const links = await loadLinksCollection();
+  
+    //get the wanted metadata of the given url
+    const metaArr = await getUrlMetadata(req.body.urlToAdd);
+    
+    
+    //add the new link to the links collection 
     await links.insertOne({
         url: req.body.urlToAdd,
         image: metaArr[0],
@@ -28,18 +34,20 @@ router.post('/', async(req,res) => {
         desc: metaArr[2]
     });
 
-    //return status 201 - everythink is ok and somethink was created
+    //return status 201 - everything is ok and something new was created
     res.status(201).send();
 });
 
 //Delete Link
 router.delete('/:id', async(req,res) => {
+    
+    //connect to the database and get the links collection
     const links = await loadLinksCollection();
 
     //delete a link from the links collection based on the id that is recieved in req.params
     await links.deleteOne({_id: new mongodb.ObjectID(req.params.id)});
 
-     //return status 200 - everythink is ok 
+     //return status 200 - everything is ok 
     res.status(200).send();
 
 });
