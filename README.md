@@ -126,8 +126,6 @@ Installations:
        (*) To run the client : on the cmd run -  'npm run serve'	
 
 
-Input tests - no input is inserted and the inserted blank does not already exist in the list Assuming that input is entered correctly
-
 Input Validation:
      1.Check that no blank\empty input is inserted.
      2.Check that the input (link) that is entered does not already exists in the links list - there will be no duplicates.
