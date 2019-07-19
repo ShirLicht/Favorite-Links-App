@@ -37,14 +37,22 @@ export default {
         this.links = await LinkService.getLinks();
       },
       async addLink(newLink){
+        var flag=0, link;
         console.log("new Link: " + newLink);
-        if(newLink==null || newLink=="")
+        
+        //Validation Check - check whether the newLink is already in the list
+        for(link of this.links)
         {
-           window.alert("Link can not be empty!!!! Please enter a valid url!");
-            console.log("err");
-          
+          if(link.url == newLink)
+          {
+             window.alert("NOTICE: Link already exists!!!!");
+             flag = 1;
+          }
+           
         }
-        else{
+       
+       //if the newLink doesn't exist in the list - add it
+       if(flag==0){
             //Add the new link to the database
           await LinkService.addLink(newLink);
           //Get the updated links list from the server
