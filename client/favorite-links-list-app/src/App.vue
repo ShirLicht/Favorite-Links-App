@@ -42,7 +42,7 @@ export default {
         {
           if(link.url == newLink)
           {
-             window.alert("NOTICE: Link already exists in the list!!!!");
+             window.alert("Link already exists!!!!");
              flag = 1;
           }
            
