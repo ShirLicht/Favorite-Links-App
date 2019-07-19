@@ -127,14 +127,18 @@ Installations:
 
 
 Input Validation:
+
      1.Check that no blank\empty input is inserted.
+
      2.Check that the input (link) that is entered does not already exists in the links list - there will be no duplicates.
 
 Assumptions:
+
      1.In the case where input is inserted (the input is not empty) - the input is correct, ie a proper link is inserted.
 
 
 Operating Instructions:
+
 	 1. Download the project from github.
 
 	 2. Install Node.js, MongoDB and Vue.js - An explanation of how to install is in the Installations section.
