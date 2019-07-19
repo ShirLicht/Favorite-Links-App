@@ -1,12 +1,13 @@
 //service that handles all of the requests
 import axios from 'axios';
 
+//server's url
 const url = 'http://localhost:5000/';
 
 
 class LinkService{
 
-    //Get Links
+    //Get All Links
     static getLinks(){
         return new Promise(async (resolve, reject) => {
             try{
@@ -21,16 +22,13 @@ class LinkService{
         });
     }
 
-    //Add Link
+    //Add a Link
     static addLink(urlToAdd){
-        return axios.post(url, {urlToAdd}).then(response => {
-            if(response.status == '404')
-                alert(response.statusText);
-        });
+        return axios.post(url, {urlToAdd});
     }
 
 
-    //Delete Link
+    //Delete a Link - with the supplied id
     static deleteLink(id){
         return axios.delete(`${url}${id}`);
     }

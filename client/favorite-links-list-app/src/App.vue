@@ -1,7 +1,5 @@
 <template>
-
   <div id="app">
-    <link href="https://fonts.googleapis.com/css?family=Caveat&display=swap" rel="stylesheet">
     <Header/>
     <AddLink v-on:add-link="addLink"/>
     <Links v-bind:links="links" v-on:del-link="deleteLink"/>
@@ -38,34 +36,33 @@ export default {
       },
       async addLink(newLink){
         var flag=0, link;
-        console.log("new Link: " + newLink);
         
-        //Validation Check - check whether the newLink is already in the list
+        //Validation Check - check whether the newLink is already in the list of links
         for(link of this.links)
         {
           if(link.url == newLink)
           {
-             window.alert("NOTICE: Link already exists!!!!");
+             window.alert("NOTICE: Link already exists in the list!!!!");
              flag = 1;
           }
            
         }
        
-       //if the newLink doesn't exist in the list - add it
+       //if the newLink doesn't exist in the list of links - add it
        if(flag==0){
-            //Add the new link to the database
+
+          //Add the new link to the database
           await LinkService.addLink(newLink);
+
           //Get the updated links list from the server
           this.links = await LinkService.getLinks();
         }
-       
-
        
       }
   },
   async created(){
     try{
-      //Get the links array from the server
+      //Get the links list from the server
       this.links = await LinkService.getLinks();
       
     }catch(err){

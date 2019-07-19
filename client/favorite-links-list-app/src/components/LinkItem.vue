@@ -1,15 +1,15 @@
 <template>
     <div class="link-item" >
         <div class="img-div">
-        <img id="linkImg" v-bind:src="link.image" width="100" height="100">
+            <img id="linkImg" v-bind:src="link.image" width="100" height="100">
         </div>
-         <div class="content-div">
-        <h2 id="linkTitle">{{link.title}}</h2>
-        <p id="linkDescription">{{link.desc}}</p>
-        <a v-bind:href="link.url" id="url-p"> {{link.url}}</a>
+        <div class="content-div">
+            <h2 id="linkTitle">{{link.title}}</h2>
+            <p id="linkDescription">{{link.desc}}</p>
+            <a v-bind:href="link.url" id="url-p"> {{link.url}}</a>
         </div>
-        <div>
-        <button @click="$emit('del-link', link._id)" class="del">x</button>
+        <div class="del-btn-div">
+            <button @click="$emit('del-link', link._id)" class="del">x</button>
         </div>
     </div>
 </template>
@@ -18,21 +18,7 @@
 
 export default {
     name: "LinkItem",
-    props: ["link"],
-    methods : {
-           getData(){
-                console.log("create");
-                const urlMetadata = require('url-metadata');
-            
-                urlMetadata('https://cors-anywhere.herokuapp.com/'+this.link.url).then(
-                function (metadata) { // success handler
-                    console.log(metadata);
-                   document.getElementById("linkImg").src = metadata.image;
-                    document.getElementById("linkTitle").innerHTML = metadata.title;
-                    document.getElementById("linkDescription").innerHTML = metadata.description;
-                }).catch(err => console.log(err))
-                            }
-                    }
+    props: ["link"]
 }
 </script>
 
@@ -53,16 +39,17 @@ export default {
         cursor: pointer;
         float: right;
     }
-    #url-p{
-        font-weight: bold;
-    }
-    .img-div{
-        padding: 10;
-    }
+ #url-p{
+    font-weight: bold;
+ }
+ .img-div{
+    padding: 10;
+ }
 
-    .content-div{
-        padding-left:15px;
-    }
+ .content-div{
+    padding-left:15px;
+    width: 100%;
+ }
    
 </style>
 

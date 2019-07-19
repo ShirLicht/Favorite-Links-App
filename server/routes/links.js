@@ -25,17 +25,12 @@ router.post('/', async(req,res) => {
     //get the wanted metadata of the given url
     const metaArr = await getUrlMetadata(req.body.urlToAdd);
 
-    //check if there is something wrong with the url or it's metadata - if there is throw an error
-    if (metaArr == null || metaArr == undefined){
-        res.status(404).send('url not found');
-    }
-    else{
-
+  
         //Check if there is an image provided in the metadata of the url - if no image is provided add a "No_image_available" image
         if(metaArr[0]==null||metaArr[0]==""){
             metaArr[0] = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
-            console.log(metaArr[0]);
         }
+        
         //add the new link to the links collection 
         await links.insertOne({
             url: req.body.urlToAdd,
@@ -48,8 +43,7 @@ router.post('/', async(req,res) => {
         res.status(201).send();
 
     }
-    
-});
+    );
 
 //Delete Link
 router.delete('/:id', async(req,res) => {

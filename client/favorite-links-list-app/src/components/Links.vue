@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-bind:key="link.id" v-for="link in links">
+        <div v-bind:key="link._id" v-for="link in links">
             <LinkItem v-bind:link="link" v-on:del-link="$emit('del-link', link._id)"/>
         </div>
     </div>

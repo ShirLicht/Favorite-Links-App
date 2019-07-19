@@ -23,7 +23,7 @@ Project Introduction:
 
 Installations: 
 
-    Database -
+    (A) Database -
             1.download&install MongoDB.
             
             2.MongoDB website:
@@ -37,13 +37,14 @@ Installations:
             4.open the folder that the mongoDB is installed in, get into the bin folder and open the mongo.exe file
             (For example - "C:\Program Files\MongoDB\Server\4.0\bin\mongo.exe") 
 
-            5.create a new database called 'favorite-links' by running the command:                   'use favorite-links'.
+            5.In the mongo.exe file create a new database called 'favorite_links' by running the command:
+            'use favorite_links'.
             
             
-            6.create a new collection called 'links' by running the command:
+            6.After creating the 'favorite_links' db - create a new collection inside the db called 'links' by running the command:
               'db.createCollection("links")'.
 
-     Server - 
+     (B) Server - 
             insatll Node.js:
             https://nodejs.org/en/
 
@@ -114,16 +115,25 @@ Installations:
 
        (*) To run the server : on the cmd run - 'npm run dev'
 
-    Client - 
+    (C) Client - 
 
            1. install Vue.js:
                 how to install:
-                    on the cmd run - npm install -g @vue/cli
+                    on the cmd run - 'npm install -g @vue/cli'
 
             
 
        (*) To run the client : on the cmd run -  'npm run serve'	
 
+
+Input tests - no input is inserted and the inserted blank does not already exist in the list Assuming that input is entered correctly
+
+Input Validation:
+     1.Check that no blank\empty input is inserted.
+     2.Check that the input (link) that is entered does not already exists in the links list - there will be no duplicates.
+
+Assumptions:
+     1.In the case where input is inserted (the input is not empty) - the input is correct, ie a proper link is inserted.
 
 
 Operating Instructions:
@@ -135,14 +145,14 @@ Operating Instructions:
 
 	 4. Open VS code and then open the project's folder (Favorite-App-Links-App).
 
-	 5. Open new terminal and install all the required packages that were mentioned in the Installations section.
+	 5. Open a new terminal, cd to the project's folder (Favorite-App-Links-App) and install all the required packages that were mentioned in the Installations section.
 
-	 6. Open new terminal and run the server by running the comand - 'npm run dev'.
+	 6. Open a new terminal, cd to the project's folder (Favorite-App-Links-App) and run the server by running the command - 'npm run dev'.
 
 	 7. Open Chrome and enter the url : 'localhost:5000'.
 
-	 8. Open another new terminal, cd to "Favorite-Links-App\client\favorite-links-list-app" and run the vue App by running the comand - 'npm run serve'.
+	 8. Open another new terminal, cd to "Favorite-Links-App\client\favorite-links-list-app" and run the vue App by running the command - 'npm run serve'.
 
-	 9. Open Chrome and enter the url : 'localhost:8080'.
+	 9. Open another Chrome window and enter the url : 'localhost:8080'.
 
      10. Enjoy!
