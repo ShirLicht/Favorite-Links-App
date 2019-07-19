@@ -23,7 +23,10 @@ class LinkService{
 
     //Add Link
     static addLink(urlToAdd){
-        return axios.post(url, {urlToAdd});
+        return axios.post(url, {urlToAdd}).then(response => {
+            if(response.status == '404')
+                alert(response.statusText);
+        });
     }
 
 

@@ -21,21 +21,28 @@ router.post('/', async(req,res) => {
 
     //connect to the database and get the links collection
     const links = await loadLinksCollection();
-  
+    
     //get the wanted metadata of the given url
     const metaArr = await getUrlMetadata(req.body.urlToAdd);
     
-    
-    //add the new link to the links collection 
-    await links.insertOne({
-        url: req.body.urlToAdd,
-        image: metaArr[0],
-        title: metaArr[1],
-        desc: metaArr[2]
-    });
+    if (metaArr == null || metaArr == undefined){
+        res.status(404).send('url not found');
+    }
+    else{
+        //add the new link to the links collection 
+        await links.insertOne({
+            url: req.body.urlToAdd,
+            image: metaArr[0],
+            title: metaArr[1],
+            desc: metaArr[2]
+        });
 
-    //return status 201 - everything is ok and something new was created
-    res.status(201).send();
+        //return status 201 - everything is ok and something new was created
+        res.status(201).send();
+
+    }
+    
+    //else - return res.status(404).send('url not found');
 });
 
 //Delete Link
@@ -71,6 +78,7 @@ async function getUrlMetadata(url){
       },
       function (error) { // failure handler
         console.log(error);
+        return null;
       })
 
       return metaArr;

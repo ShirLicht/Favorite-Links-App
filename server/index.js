@@ -12,6 +12,7 @@ app.use(cors());
 const links = require('./routes/links');
 
 app.use('/', links);
+
 //Variable for the server port (erroku / localhost)
 const port = process.env.PORT || 5000;
 

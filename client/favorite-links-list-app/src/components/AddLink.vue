@@ -1,9 +1,8 @@
 <template>
      <div>
-        <form @submit="addLink">
-            <input type="text" v-model="url" name="title" placeholder="Add Link...">
+        <form @submit="addLink" >
+            <input type="text" v-model="url" name="title" placeholder="Add Link..." required>
             <input type="submit" value="Submit" class="btn"> 
-
         </form>
     </div>
 </template>
@@ -19,12 +18,14 @@ export default {
     },
     methods:{
         addLink(e){
+            
             e.preventDefault();
-     
-            //Send the new url up to parent
+          
+            //Send the new url up to the parent
             this.$emit('add-link', this.url);
 
             this.url = '';
+            
         }
     }
 }
@@ -33,6 +34,7 @@ export default {
 <style scoped>
  form{
      display: flex;
+     margin-bottom: 10px;
  }
 
  input[type="text"]{

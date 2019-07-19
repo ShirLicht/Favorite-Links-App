@@ -42,6 +42,7 @@ export default {
         padding: 10px;
         border-bottom: 1px #ccc dotted;
         display: flex;
+        margin-bottom: 10px;
     }
  .del{
         background: #ff0000;

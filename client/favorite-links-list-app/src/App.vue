@@ -37,11 +37,20 @@ export default {
         this.links = await LinkService.getLinks();
       },
       async addLink(newLink){
-        
-        //Add the new link to the database
-        await LinkService.addLink(newLink);
-        //Get the updated links list from the server
-        this.links = await LinkService.getLinks();
+        console.log("new Link: " + newLink);
+        if(newLink==null || newLink=="")
+        {
+           window.alert("Link can not be empty!!!! Please enter a valid url!");
+            console.log("err");
+          
+        }
+        else{
+            //Add the new link to the database
+          await LinkService.addLink(newLink);
+          //Get the updated links list from the server
+          this.links = await LinkService.getLinks();
+        }
+       
 
        
       }
@@ -67,7 +76,7 @@ export default {
   }
 
   body{
-    font-family: Caveat, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.4;
   }
 

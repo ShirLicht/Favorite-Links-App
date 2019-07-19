@@ -19,6 +19,7 @@ export default {
      text-align: center;
      font-family: Luckiest Guy, Helvetica, sans-serif;
      padding: 10px;
+     margin-bottom: 10px;
  }
 
  .header a{
